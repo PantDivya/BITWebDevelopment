@@ -1,0 +1,26 @@
+@model Department
+
+<div class="align-center">
+    
+    <h2>Add Departments</h2>
+
+    <form action="/department/add" method="post">
+  <div class="col-md-12">
+    <label asp-for="Name" class="form-label"></label>
+    <input asp-for="Name" class="form-control">
+  </div>
+  <div class="col-md-12">
+    <label asp-for="Description" class="form-label"></label>
+    <input asp-for="Description" class="form-control">
+  </div>
+  <div class="col-md-12">
+    <label asp-for="Established" class="form-label"></label>
+    <input asp-for="Established" class="form-control">
+  </div>
+  
+  
+  <button type="submit" class="btn btn-success float-end" style="margin-top: 5px;">Save</button>
+</form>
+
+
+</div>
