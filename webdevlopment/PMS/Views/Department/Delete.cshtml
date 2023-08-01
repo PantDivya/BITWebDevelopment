@@ -1,0 +1,9 @@
+﻿@model Department
+<h3>Do you want to delete this record for @Model.Name ?</h3>
+<form action="/department/delete" method="post">
+    <a href="/department" class="btn btn-success">Cancle</a>
+
+    <input type="hidden" asp-for="Id" />
+
+    <button class="btn btn-danger" type="submit">Delete</button>
+</form>

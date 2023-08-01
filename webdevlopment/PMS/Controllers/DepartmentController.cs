@@ -1,31 +1,20 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Database;
 using PMS.Models;
 
 namespace PMS.Controllers;
 
 public class DepartmentController : Controller
 {
-    static List<Department> departments = new()
-        {
-            new Department
-            {
-                Id = 1, Name = "OPD", Description = "It is out patient department", Established = new DateTime(2002,  1,  1)
-            },
-            new Department
-            {
-                Id = 2, Name = "Orthopedics", Description = "It is orthopedic department", Established = new DateTime(2005 , 4 , 21)
-            },
-            new Department
-            {
-                Id = 1, Name = "Gyno", Description = "It is Gyno department", Established = new DateTime(2007 , 11 , 12)
-            }
-        };
-    
+    PMSDbContext db = new();
+
+
     [HttpGet]
     public IActionResult Index()
     {
         //Fetch list of department
+        var departments = db.Departments.ToList();
         return View(departments);
     }
 
@@ -38,9 +27,40 @@ public class DepartmentController : Controller
     [HttpPost]
     public IActionResult Add(Department department)
     {
-        departments.Add(department);
+        db.Departments.Add(department);
+        db.SaveChanges();
         return RedirectToAction("Index");
     }
 
-   
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var department = db.Departments.Find(id);
+        return View(department);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Department department)
+    {
+        db.Departments.Update(department);
+        db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        var department = db.Departments.Find(id);
+        return View(department);
+    }
+
+    [HttpPost]
+    public IActionResult Delete(Department department)
+    {
+        db.Departments.Remove(department);
+        db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+
 }

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PMS.Models.Doctor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Doctors</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success float-end">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specialist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credentials)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialist)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credentials)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square text-warning"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash3-fill text-danger"></i></a>
+
+                    <a asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-info-circle"></i></a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

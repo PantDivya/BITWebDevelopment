@@ -24,8 +24,8 @@
                         <td >@departments.Description</td>
                         <td >@departments.Established.ToString("MMMM dd yyyy")</td>
                         <td>
-                            <a href="/department/edit"><i  href="" class="bi bi-pencil-square text-warning"></i></a>
-                            <a href="/department/delete"><i class="bi bi-trash3-fill text-danger"></i></a>
+                    <a href="/department/edit/@departments.Id"><i class="bi bi-pencil-square text-warning"></i></a>
+                    <a href="/department/delete/@departments.Id"><i class="bi bi-trash3-fill text-danger"></i></a>
                         </td>
                     </tr>
                  }
